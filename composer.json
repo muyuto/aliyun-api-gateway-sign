@@ -1,0 +1,20 @@
+{
+    "name": "lianbian/aliyun-api-gateway-sign",
+    "description": "阿里云官方代码派生的composer版本",
+    "type": "composer-plugin",
+    "license": "Apache License 2.0",
+    "authors": [
+        {
+            "name": "m.zhou",
+            "email": "m.zhou@ilifeceo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "LianBian\\AliyunApiGatewaySign\\": "src/"
+        }
+    }
+}
