@@ -10,12 +10,12 @@ use LianBian\Http\HttpClient;
 use LianBian\Http\HttpRequest;
 
 class AliClient {
-    private static $appKey = "appKey";
-    private static $appSecret = "appSecret";
-	//协议(http或https)://域名:端口，注意必须有http://或https://
+    private $appKey = "appKey";
+    private $appSecret = "appSecret";
 
-    public function __construct()
+    public function __construct($appKey, $appSecret)
     {
+        $this->appKey = $appKey; $this->appSecret = $appSecret;
     }
 
     /**
@@ -31,7 +31,7 @@ class AliClient {
      */
     public function doGet($host, $path, array $headers, array $querys, $debug=false) {
 		//域名后、query前的部分
-		$request = new HttpRequest($host, $path, HttpMethod::GET, $this::$appKey, $this::$appSecret);
+		$request = new HttpRequest($host, $path, HttpMethod::GET, $this->appKey, $this->appSecret);
 
         //设定Content-Type，根据服务器端接受的值来设置
 		$request->setHeader(HttpHeader::HTTP_HEADER_CONTENT_TYPE, ContentType::CONTENT_TYPE_TEXT);
@@ -64,12 +64,19 @@ class AliClient {
 		return $response;
 	}
 
-	/**
-	*method=POST且是表单提交，请求示例
-	*/
+    /**
+     * method=POST且是表单提交，请求示例
+     * @param string $host
+     * @param string $path
+     * @param array $headers
+     * @param array $querys
+     * @param array $bodys
+     * @param bool $debug
+     * @return mixed
+     */
 	public function doPostForm($host, $path, $headers, $querys, $bodys, $debug=false) {
 		//域名后、query前的部分
-		$request = new HttpRequest($host, $path, HttpMethod::POST, $this::$appKey, $this::$appSecret);
+		$request = new HttpRequest($host, $path, HttpMethod::POST, $this->appKey, $this->appSecret);
 
         //设定Content-Type，根据服务器端接受的值来设置
 		$request->setHeader(HttpHeader::HTTP_HEADER_CONTENT_TYPE, ContentType::CONTENT_TYPE_FORM);
@@ -121,7 +128,7 @@ class AliClient {
      */
 	public function doPostString($host, $path, array $headers, array $querys, $bodyContent, $debug=false) {
 		//域名后、query前的部分
-		$request = new HttpRequest($host, $path, HttpMethod::POST, $this::$appKey, $this::$appSecret);
+		$request = new HttpRequest($host, $path, HttpMethod::POST, $this->appKey, $this->appSecret);
 		//传入内容是json格式的字符串
 		// $bodyContent = "{\"inputs\": [{\"image\": {\"dataType\": 50,\"dataValue\": \"base64_image_string(此行)\"},\"configure\": {\"dataType\": 50,\"dataValue\": \"{\"side\":\"face(#此行此行)\"}\"}}]}";
 
@@ -177,7 +184,7 @@ class AliClient {
 	public function doPostStream($host, $path, array $headers, array $querys, array $bytes, $bodyContent, $debug=false) {
 		//域名后、query前的部分
 		// $path = "/poststream";
-        $request = new HttpRequest($host, $path, HttpMethod::POST, $this::$appKey, $this::$appSecret);
+        $request = new HttpRequest($host, $path, HttpMethod::POST, $this->appKey, $this->appSecret);
 		//Stream的内容
 		// $bytes = array();
 		//传入内容是json格式的字符串
