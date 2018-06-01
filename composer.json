@@ -1,7 +1,7 @@
 {
-    "name": "lianbian/aliyun-api-gateway-sign",
+    "name": "lianbian/linebe-aligateway-sign",
     "description": "阿里云官方代码派生的composer版本",
-    "type": "composer-plugin",
+    "type": "library",
     "license": "Apache License 2.0",
     "authors": [
         {
@@ -12,9 +12,12 @@
     "require": {
         "php": ">=5.4"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "LianBian\\AliyunApiGatewaySign\\": "src/"
+            "LianBian\\Constant\\": "src/Constant",
+            "LianBian\\Http\\": "src/Http",
+            "LianBian\\Util\\": "src/Util"
         }
     }
 }
