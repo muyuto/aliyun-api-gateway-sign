@@ -2,7 +2,7 @@
     "name": "lianbian/linebe-aligateway-sign",
     "description": "阿里云官方代码派生的composer版本",
     "type": "library",
-    "license": "Apache License 2.0",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "m.zhou",
